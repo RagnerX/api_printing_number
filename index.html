@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fetch API</title>
+</head>
+<body>
+      
+          <button id="getAPI">GET DATA FROM API </button>
+          <p id="result"></p>
+		  
+		  
+		  
+		  <script>
+        
+			document.getElementById('getAPI').addEventListener('click', getAPI);
+			
+			function getAPI(){
+						
+				
+				
+				fetch('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=bf163e9e91614a258cbd995092803b62')
+				.then(res => res.json())
+				.then(data => {
+					console.log('kkkk', data);
+					let result = `<h2> Random User Info From Jsonplaceholder API</h2>`;
+					let count = 0;	
+					data.articles.forEach((element) => {
+						const { author,title } = element;
+						count++;
+						
+						if(count>10){
+						
+							return;
+						}
+						result +=
+							`<div>
+								 <ul class="w3-ul">
+									 <li> Athor Name : ${author}</li>
+									 <li> Headline : ${title} </li>
+									
+								 </ul>
+							  </div>
+							  `;
+								document.getElementById('result').innerHTML = result;
+							});
+						  
+						});
+			
+			
+
+			}
+			
+			</script> 
+
+</body>
+</html>
